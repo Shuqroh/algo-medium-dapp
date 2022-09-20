@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/algo-medium-dapp/static/css/main.a174681c.chunk.css",
+    "main.js": "/algo-medium-dapp/static/js/main.4d830292.chunk.js",
+    "main.js.map": "/algo-medium-dapp/static/js/main.4d830292.chunk.js.map",
+    "runtime-main.js": "/algo-medium-dapp/static/js/runtime-main.05e0c19b.js",
+    "runtime-main.js.map": "/algo-medium-dapp/static/js/runtime-main.05e0c19b.js.map",
+    "static/css/2.e985ad9f.chunk.css": "/algo-medium-dapp/static/css/2.e985ad9f.chunk.css",
+    "static/js/2.a66e2ce5.chunk.js": "/algo-medium-dapp/static/js/2.a66e2ce5.chunk.js",
+    "static/js/2.a66e2ce5.chunk.js.map": "/algo-medium-dapp/static/js/2.a66e2ce5.chunk.js.map",
+    "static/js/3.041e1b21.chunk.js": "/algo-medium-dapp/static/js/3.041e1b21.chunk.js",
+    "static/js/3.041e1b21.chunk.js.map": "/algo-medium-dapp/static/js/3.041e1b21.chunk.js.map",
+    "index.html": "/algo-medium-dapp/index.html",
+    "static/css/2.e985ad9f.chunk.css.map": "/algo-medium-dapp/static/css/2.e985ad9f.chunk.css.map",
+    "static/css/main.a174681c.chunk.css.map": "/algo-medium-dapp/static/css/main.a174681c.chunk.css.map",
+    "static/js/2.a66e2ce5.chunk.js.LICENSE.txt": "/algo-medium-dapp/static/js/2.a66e2ce5.chunk.js.LICENSE.txt",
+    "static/media/bootstrap-icons.css": "/algo-medium-dapp/static/media/bootstrap-icons.ea98e12d.woff2"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.05e0c19b.js",
+    "static/css/2.e985ad9f.chunk.css",
+    "static/js/2.a66e2ce5.chunk.js",
+    "static/css/main.a174681c.chunk.css",
+    "static/js/main.4d830292.chunk.js"
+  ]
+}

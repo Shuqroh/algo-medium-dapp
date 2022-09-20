@@ -1,0 +1,83 @@
+#pragma version 6
+txn ApplicationID
+int 0
+==
+bnz main_l10
+txn OnCompletion
+int DeleteApplication
+==
+bnz main_l9
+txna ApplicationArgs 0
+byte "edit"
+==
+bnz main_l8
+txna ApplicationArgs 0
+byte "upvote"
+==
+bnz main_l7
+txna ApplicationArgs 0
+byte "downvote"
+==
+bnz main_l6
+err
+main_l6:
+byte "DOWNVOTE"
+byte "DOWNVOTE"
+app_global_get
+int 1
++
+app_global_put
+int 1
+return
+main_l7:
+byte "UPVOTE"
+byte "UPVOTE"
+app_global_get
+int 1
++
+app_global_put
+int 1
+return
+main_l8:
+byte "TITLE"
+txna ApplicationArgs 1
+app_global_put
+byte "CONTENT"
+txna ApplicationArgs 2
+app_global_put
+byte "IMAGE"
+txna ApplicationArgs 3
+app_global_put
+int 1
+return
+main_l9:
+txn Sender
+global CreatorAddress
+==
+return
+main_l10:
+txn NumAppArgs
+int 3
+==
+assert
+txn Note
+byte "blog-dapp:uv2"
+==
+assert
+byte "TITLE"
+txna ApplicationArgs 0
+app_global_put
+byte "IMAGE"
+txna ApplicationArgs 1
+app_global_put
+byte "CONTENT"
+txna ApplicationArgs 2
+app_global_put
+byte "UPVOTE"
+int 0
+app_global_put
+byte "DOWNVOTE"
+int 0
+app_global_put
+int 1
+return

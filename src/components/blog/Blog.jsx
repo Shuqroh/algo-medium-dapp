@@ -37,7 +37,7 @@ const Blog = ({
           <Card.Title>{title}</Card.Title>
           {/* <Card.Text className="flex-grow-1">{location}</Card.Text> */}
           <Form className="d-flex align-content-stretch flex-row gap-2">
-            {blog.owner !== address ? (
+            {blog.owner === address ? (
               <EditBlog blog={blog} editBlog={editBlog} />
             ) : (
               <ViewBlog blog={blog} />

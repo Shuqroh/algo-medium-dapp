@@ -34,16 +34,17 @@ const ViewBlog = ({ blog }) => {
             />
           </div>
           <p>{blog.content}</p>
-          <h6>Author:</h6>
+
           <Stack direction="horizontal" gap={2}>
-            <Identicon size={28} address={addr} />
+            <Identicon size={28} address={blog.owner} />
             <span className="font-monospace text-secondary">
+              <h6>Author:</h6>{" "}
               <a
-                href={`https://testnet.algoexplorer.io/address/${owner}`}
+                href={`https://testnet.algoexplorer.io/address/${blog.owner}`}
                 target="_blank"
                 rel="noreferrer"
               >
-                {truncateAddress(owner)}
+                {truncateAddress(blog.owner)}
               </a>
             </span>
             <Badge bg="secondary" className="ms-auto">

@@ -21,7 +21,7 @@ const Blog = ({
       <Card className="h-100">
         <Card.Header>
           <Stack direction="horizontal" gap={2}>
-            <Identicon size={28} address={addr} />
+            <Identicon size={28} address={owner} />
             <span className="font-monospace text-secondary">
               Author:{" "}
               <a

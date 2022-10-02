@@ -17,10 +17,10 @@ const ViewBlog = ({ blog }) => {
         onClick={handleShow}
         className="btn w-50 py-3"
       >
-        Read More
+        Read Blog
       </Button>
 
-      <Modal show={show} onHide={handleClose} centered>
+      <Modal size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>{blog.title}</Modal.Title>
         </Modal.Header>
@@ -34,12 +34,19 @@ const ViewBlog = ({ blog }) => {
             />
           </div>
           <p>{blog.content}</p>
-          <h6>Author</h6>
+
           <Stack direction="horizontal" gap={2}>
-            <span className="font-monospace text-secondary">
-              {truncateAddress(blog.owner)}
-            </span>
             <Identicon size={28} address={blog.owner} />
+            <span className="font-monospace text-secondary">
+              <h6>Author:</h6>{" "}
+              <a
+                href={`https://testnet.algoexplorer.io/address/${blog.owner}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {truncateAddress(blog.owner)}
+              </a>
+            </span>
             <Badge bg="secondary" className="ms-auto">
               Published
             </Badge>

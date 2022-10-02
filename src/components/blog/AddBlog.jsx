@@ -64,6 +64,7 @@ const AddBlog = ({ createBlog }) => {
                 as="textarea"
                 placeholder="content"
                 style={{ height: "80px" }}
+                maxLength={900}
                 onChange={(e) => {
                   setContent(e.target.value);
                 }}

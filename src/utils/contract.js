@@ -96,7 +96,7 @@ export const createBlogAction = async (senderAddress, blog) => {
   return appId;
 };
 
-// Edit BLOG: Group transaction consisting of ApplicationCallTxn
+// Edit BLOG
 export const editAction = async (senderAddress, blog) => {
   console.log("Edit blog...");
 
@@ -118,34 +118,28 @@ export const editAction = async (senderAddress, blog) => {
     appArgs: appArgs,
   });
 
-  let txnArray = [appCallTxn];
+  // Get transaction ID
+  let txId = appCallTxn.txID().toString();
 
-  // Create group transaction out of previously build transactions
-  let groupID = algosdk.computeGroupID(txnArray);
-  for (let i = 0; i < 1; i++) txnArray[i].group = groupID;
+  // Sign & submit the transaction
+  let signedTxn = await myAlgoConnect.signTransaction(appCallTxn.toByte());
 
-  // Sign & submit the group transaction
-  let signedTxn = await myAlgoConnect.signTransaction(
-    txnArray.map((txn) => txn.toByte())
-  );
-  console.log("Signed group transaction");
-  let tx = await algodClient
-    .sendRawTransaction(signedTxn.map((txn) => txn.blob))
-    .do();
+  console.log("Signed transaction with txID: %s", txId);
+  await algodClient.sendRawTransaction(signedTxn.blob).do();
 
-  // Wait for group transaction to be confirmed
-  let confirmedTxn = await algosdk.waitForConfirmation(algodClient, tx.txId, 4);
+  // Wait for transaction to be confirmed
+  const confirmedTxn = await algosdk.waitForConfirmation(algodClient, txId, 4);
 
-  // Notify about completion
+  // Get the completed Transaction
   console.log(
-    "Group transaction " +
-      tx.txId +
+    "Transaction " +
+      txId +
       " confirmed in round " +
       confirmedTxn["confirmed-round"]
   );
 };
 
-// UPVOTE BLOG: Group transaction consisting of ApplicationCallTxn and PaymentTxn
+// UPVOTE BLOG
 export const upvoteAction = async (senderAddress, blog) => {
   console.log("Upvote blog...");
 
@@ -165,34 +159,28 @@ export const upvoteAction = async (senderAddress, blog) => {
     appArgs: appArgs,
   });
 
-  let txnArray = [appCallTxn];
+  // Get transaction ID
+  let txId = appCallTxn.txID().toString();
 
-  // Create group transaction out of previously build transactions
-  let groupID = algosdk.computeGroupID(txnArray);
-  for (let i = 0; i < 1; i++) txnArray[i].group = groupID;
+  // Sign & submit the transaction
+  let signedTxn = await myAlgoConnect.signTransaction(appCallTxn.toByte());
 
-  // Sign & submit the group transaction
-  let signedTxn = await myAlgoConnect.signTransaction(
-    txnArray.map((txn) => txn.toByte())
-  );
-  console.log("Signed group transaction");
-  let tx = await algodClient
-    .sendRawTransaction(signedTxn.map((txn) => txn.blob))
-    .do();
+  console.log("Signed transaction with txID: %s", txId);
+  await algodClient.sendRawTransaction(signedTxn.blob).do();
 
-  // Wait for group transaction to be confirmed
-  let confirmedTxn = await algosdk.waitForConfirmation(algodClient, tx.txId, 4);
+  // Wait for transaction to be confirmed
+  const confirmedTxn = await algosdk.waitForConfirmation(algodClient, txId, 4);
 
-  // Notify about completion
+  // Get the completed Transaction
   console.log(
-    "Group transaction " +
-      tx.txId +
+    "Transaction " +
+      txId +
       " confirmed in round " +
       confirmedTxn["confirmed-round"]
   );
 };
 
-// DOWNVOTE BLOG: Group transaction consisting of ApplicationCallTxn and PaymentTxn
+// DOWNVOTE BLOG
 export const downvoteAction = async (senderAddress, blog) => {
   console.log("downvote blog...");
 
@@ -212,28 +200,22 @@ export const downvoteAction = async (senderAddress, blog) => {
     appArgs: appArgs,
   });
 
-  let txnArray = [appCallTxn];
+  // Get transaction ID
+  let txId = appCallTxn.txID().toString();
 
-  // Create group transaction out of previously build transactions
-  let groupID = algosdk.computeGroupID(txnArray);
-  for (let i = 0; i < 1; i++) txnArray[i].group = groupID;
+  // Sign & submit the transaction
+  let signedTxn = await myAlgoConnect.signTransaction(appCallTxn.toByte());
 
-  // Sign & submit the group transaction
-  let signedTxn = await myAlgoConnect.signTransaction(
-    txnArray.map((txn) => txn.toByte())
-  );
-  console.log("Signed group transaction");
-  let tx = await algodClient
-    .sendRawTransaction(signedTxn.map((txn) => txn.blob))
-    .do();
+  console.log("Signed transaction with txID: %s", txId);
+  await algodClient.sendRawTransaction(signedTxn.blob).do();
 
-  // Wait for group transaction to be confirmed
-  let confirmedTxn = await algosdk.waitForConfirmation(algodClient, tx.txId, 4);
+  // Wait for transaction to be confirmed
+  const confirmedTxn = await algosdk.waitForConfirmation(algodClient, txId, 4);
 
-  // Notify about completion
+  // Get the completed Transaction
   console.log(
-    "Group transaction " +
-      tx.txId +
+    "Transaction " +
+      txId +
       " confirmed in round " +
       confirmedTxn["confirmed-round"]
   );
@@ -341,6 +323,15 @@ const getApplication = async (appId) => {
     if (getField("IMAGE", globalState) !== undefined) {
       let field = getField("IMAGE", globalState).value.bytes;
       image = base64ToUTF8String(field);
+    }
+
+    // check for blog data
+    for (let i = 0; i < 60; i++) {
+      let key_index = i.toString();
+      if (getField(key_index, globalState) !== undefined) {
+        let field = getField(key_index, globalState).value.bytes;
+        content += base64ToUTF8String(field);
+      }
     }
 
     if (getField("CONTENT", globalState) !== undefined) {

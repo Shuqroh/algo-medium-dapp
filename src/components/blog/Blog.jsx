@@ -42,22 +42,28 @@ const Blog = ({
             ) : (
               <ViewBlog blog={blog} />
             )}
-            <Button
-              variant="outline-dark"
-              onClick={() => upvoteBlog(blog)}
-              className="btn"
-            >
-              {blog.upvote}
-              <i className="bi bi-hand-thumbs-up-fill"></i>
-            </Button>
-            <Button
-              variant="outline-dark"
-              onClick={() => downvoteBlog(blog)}
-              className="btn"
-            >
-              {blog.downvote}
-              <i className="bi bi-hand-thumbs-down-fill"></i>
-            </Button>
+            {blog.owner === address ? (
+              <ViewBlog blog={blog} />
+            ) : (
+              <>
+                <Button
+                  variant="outline-dark"
+                  onClick={() => upvoteBlog(blog)}
+                  className="btn"
+                >
+                  {blog.upvote}
+                  <i className="bi bi-hand-thumbs-up-fill"></i>
+                </Button>
+                <Button
+                  variant="outline-dark"
+                  onClick={() => downvoteBlog(blog)}
+                  className="btn"
+                >
+                  {blog.downvote}
+                  <i className="bi bi-hand-thumbs-down-fill"></i>
+                </Button>
+              </>
+            )}
             {blog.owner === address && (
               <Button
                 variant="outline-danger"

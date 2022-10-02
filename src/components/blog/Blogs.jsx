@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import AddBlog from "./AddBlog";
 import Blog from "./Blog";
 import Loader from "../utils/Loader";
-import { NotificationError, NotificationSuccess } from "../utils/Notifications";
+import { NotificationError, NotificationSuccess, NotificationInfo } from "../utils/Notifications";
 import PropTypes from "prop-types";
 import { Row } from "react-bootstrap";
 import {
@@ -21,7 +21,7 @@ const Blogs = ({ address, fetchBalance }) => {
 
   const getBlogs = async () => {
     setLoading(true);
-    toast(<NotificationSuccess text="Fetching Blogs" />);
+    toast(<NotificationInfo text="Fetching Blogs" />);
     getBlogsAction()
       .then((datas) => {
         if (datas) {

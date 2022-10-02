@@ -17,10 +17,10 @@ const ViewBlog = ({ blog }) => {
         onClick={handleShow}
         className="btn w-50 py-3"
       >
-        Read More
+        Read Blog
       </Button>
 
-      <Modal show={show} onHide={handleClose} centered>
+      <Modal size="lg" show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>{blog.title}</Modal.Title>
         </Modal.Header>

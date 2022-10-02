@@ -6,6 +6,7 @@ const EditBlog = ({ editBlog, blog }) => {
   const [title, setTitle] = useState(blog.title);
   const [image, setImage] = useState(blog.image);
   const [content, setContent] = useState(blog.content);
+  const appId = blog.appId;
 
   const isFormFilled = useCallback(() => {
     return title && image && content;
@@ -64,6 +65,7 @@ const EditBlog = ({ editBlog, blog }) => {
                 as="textarea"
                 placeholder="content"
                 style={{ height: "80px" }}
+                maxLength={889}
                 onChange={(e) => {
                   setContent(e.target.value);
                 }}
@@ -80,6 +82,7 @@ const EditBlog = ({ editBlog, blog }) => {
             disabled={!isFormFilled()}
             onClick={() => {
               editBlog({
+                appId,
                 title,
                 image,
                 content,

@@ -21,10 +21,17 @@ const Blog = ({
       <Card className="h-100">
         <Card.Header>
           <Stack direction="horizontal" gap={2}>
+            <Identicon size={28} address={addr} />
             <span className="font-monospace text-secondary">
-              {truncateAddress(owner)}
+              Author:{" "}
+              <a
+                href={`https://testnet.algoexplorer.io/address/${owner}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {truncateAddress(owner)}
+              </a>
             </span>
-            <Identicon size={28} address={owner} />
             <Badge bg="secondary" className="ms-auto">
               Published
             </Badge>

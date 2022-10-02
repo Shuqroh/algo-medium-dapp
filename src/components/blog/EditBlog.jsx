@@ -65,7 +65,7 @@ const EditBlog = ({ editBlog, blog }) => {
                 as="textarea"
                 placeholder="content"
                 style={{ height: "80px" }}
-                maxLength={889}
+                maxLength={900}
                 onChange={(e) => {
                   setContent(e.target.value);
                 }}
